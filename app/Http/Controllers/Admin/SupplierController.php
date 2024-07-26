@@ -16,7 +16,7 @@ class SupplierController extends Controller
     public function index()
     {
         $data['suppliers'] = Supplier::get();
-        return view(self::PATH_VIEW . __FUNCTION__ , $data);
+        return view(self::PATH_VIEW . __FUNCTION__, $data);
     }
 
     /**
@@ -32,7 +32,22 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        Supplier::create($request->all());
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|min:3|max:255',
+                'address' => 'required|min:3|max:255',
+                'phone' => 'required|numeric|min:10',
+                'email' => 'required|email',
+            ],
+            [
+                'required' => ':attribute không hợp lệ',
+                'min' => ':attribute không hợp lệ',
+                'max' => ':attribute phải tối đa là 255 ký tự',
+                'numeric' => ':attribute phải là kiểu số',
+                'email' => ':attribute không hợp lệ',
+            ]
+        );
+        Supplier::create($validatedData);
         return redirect(route('suppliers.index'));
     }
 
@@ -42,7 +57,7 @@ class SupplierController extends Controller
     public function show(Supplier $supplier)
     {
         $data['supplier'] = $supplier->get();
-        return view(self::PATH_VIEW . __FUNCTION__ , $data);
+        return view(self::PATH_VIEW . __FUNCTION__, $data);
     }
 
     /**
@@ -51,7 +66,7 @@ class SupplierController extends Controller
     public function edit(Supplier $supplier)
     {
         $data['supplier'] = $supplier;
-        return view(self::PATH_VIEW . __FUNCTION__ , $data);
+        return view(self::PATH_VIEW . __FUNCTION__, $data);
     }
 
     /**
@@ -59,8 +74,23 @@ class SupplierController extends Controller
      */
     public function update(UpdateSupplierRequest $request, Supplier $supplier)
     {
-        $supplier->update($request->all());
-        return redirect(route('suppliers.index'))->with('msg','Thao tác thành công');
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|min:3|max:255',
+                'address' => 'required|min:3|max:255',
+                'phone' => 'required|numeric|min:10',
+                'email' => 'required|email',
+            ],
+            [
+                'required' => ':attribute không hợp lệ',
+                'min' => ':attribute không hợp lệ',
+                'max' => ':attribute phải tối đa là 255 ký tự',
+                'numeric' => ':attribute phải là kiểu số',
+                'email' => ':attribute không hợp lệ',
+            ]
+        );
+        $supplier->update($validatedData);
+        return redirect(route('suppliers.index'))->with('msg', 'Thao tác thành công');
     }
 
     /**
@@ -69,6 +99,6 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $supplier->delete();
-        return back()->with('msg','Thao tác thành công');
+        return back()->with('msg', 'Thao tác thành công');
     }
 }

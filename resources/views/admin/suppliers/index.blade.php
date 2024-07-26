@@ -3,8 +3,8 @@
     Danh sách nhà cung cấp
 @endsection
 @section('content')
-    <a class="btn btn-success" href="{{ route('suppliers.create') }}">Thêm mới</a>
     <h1>Danh sách nhà cung cấp</h1>
+    <a class="btn btn-success" href="{{ route('suppliers.create') }}">Thêm mới</a>
     <table class="table table-triped">
         <tr>
             <th>ID</th>

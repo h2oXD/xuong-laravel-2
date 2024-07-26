@@ -5,6 +5,15 @@
 @section('content')
     <h1>Thêm mới sản phẩm</h1>
     <form action="{{ route('products.store') }}" method="post" class="row">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         @csrf
         <div class="col-6 my-3">
             <label class="form-label" for="">Name</label>
@@ -16,7 +25,8 @@
         </div>
         <div class="col-6 my-3">
             <label class="form-label" for="">Quantity</label>
-            <input class="form-control" type="number" min="0" name="quantity" id="" placeholder="Nhập số lượng">
+            <input class="form-control" type="number" min="0" name="quantity" id=""
+                placeholder="Nhập số lượng">
         </div>
         <div class="col-6 my-3">
             <label class="form-label" for="">Supplier</label>
@@ -33,7 +43,8 @@
         </div>
         <div class="col-3">
             <button class="btn btn-success" type="submit">Thêm mới</button>
+            <a class="btn btn-warning" href="{{ route('products.index') }}">Danh sách</a>
         </div>
-        
+
     </form>
 @endsection

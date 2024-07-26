@@ -43,7 +43,28 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        Product::create($request->all());
+        $validatedData = $request->validate([
+            'name' => 'required|min:8|max:255',
+            'price' => 'required|numeric|min:0',
+            'quantity' => 'required|integer|min:0',
+            'description' => 'required',
+            'supplier_id' => 'required'
+        ],
+        [
+            'name.required' => 'Tên là bắt buộc',
+            'name.min' => 'Tên phải lớn hơn 8 ký tự',
+            'name.max' => 'Tên phải nhỏ hơn 255 ký tự',
+            'price.required' => 'Giá là bắt buộc',
+            'price.numeric' => 'Giá là bắt buộc',
+            'price.min' => 'Giá không được âm',
+            'quantity.required' => 'Số lượng là bắt buộc',
+            'quantity.integer' => 'Giá phải là số nguyên',
+            'description.required' => 'Mô tả không hợp lệ',
+            'supplier_id.required' => 'Nhà cung cấp không hợp lệ',
+
+        ]
+    );
+        Product::create($validatedData);
         return redirect(route('products.index'))->with('msg','Thao tác thành công');
     }
 
@@ -72,7 +93,26 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update($request->all());
+        $validatedData = $request->validate([
+            'name' => 'required|min:8|max:255',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer',
+            'description' => 'required',
+            'supplier_id' => 'required'
+        ],
+        [
+            'name.required' => 'Tên là bắt buộc',
+            'name.min' => 'Tên phải lớn hơn 8 ký tự',
+            'name.max' => 'Tên phải nhỏ hơn 255 ký tự',
+            'price.required' => 'Giá là bắt buộc',
+            'price.numeric' => 'Giá là bắt buộc',
+            'quantity.required' => 'Số lượng là bắt buộc',
+            'quantity.integer' => 'Giá phải là số nguyên',
+            'description.required' => 'Mô tả không hợp lệ',
+            'supplier_id.required' => 'Nhà cung cấp không hợp lệ',
+
+        ]);
+        $product->update($validatedData);
         return redirect(route('products.index'))->with('msg','Thao tác thành công');
     }
 
