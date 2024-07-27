@@ -3,7 +3,7 @@
     Danh sách sản phẩm
 @endsection
 @section('content')
-    <h1>Danh sách sản phẩm</h1>
+    <h3>Danh sách sản phẩm</h3>
     <a class="btn btn-success mb-3" href="{{ route('products.create') }}">Thêm mới</a>
     <table class="table table-striped">
         <tr>

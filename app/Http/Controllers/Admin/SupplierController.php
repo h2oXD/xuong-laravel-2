@@ -34,17 +34,17 @@ class SupplierController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'name' => 'required|min:3|max:255',
-                'address' => 'required|min:3|max:255',
-                'phone' => 'required|numeric|min:10',
-                'email' => 'required|email',
+                'name'      => 'required|min:3|max:255',
+                'address'   => 'required|min:3|max:255',
+                'phone'     => 'required|numeric|min:10',
+                'email'     => 'required|email',
             ],
             [
-                'required' => ':attribute không hợp lệ',
-                'min' => ':attribute không hợp lệ',
-                'max' => ':attribute phải tối đa là 255 ký tự',
-                'numeric' => ':attribute phải là kiểu số',
-                'email' => ':attribute không hợp lệ',
+                'required'  => ':attribute không hợp lệ',
+                'min'       => ':attribute không hợp lệ',
+                'max'       => ':attribute phải tối đa là 255 ký tự',
+                'numeric'   => ':attribute phải là kiểu số',
+                'email'     => ':attribute không hợp lệ',
             ]
         );
         Supplier::create($validatedData);
@@ -76,17 +76,17 @@ class SupplierController extends Controller
     {
         $validatedData = $request->validate(
             [
-                'name' => 'required|min:3|max:255',
-                'address' => 'required|min:3|max:255',
-                'phone' => 'required|numeric|min:10',
-                'email' => 'required|email',
+                'name'      => 'required|min:3|max:255',
+                'address'   => 'required|min:3|max:255',
+                'phone'     => 'required|numeric|min:10',
+                'email'     => 'required|email',
             ],
             [
-                'required' => ':attribute không hợp lệ',
-                'min' => ':attribute không hợp lệ',
-                'max' => ':attribute phải tối đa là 255 ký tự',
-                'numeric' => ':attribute phải là kiểu số',
-                'email' => ':attribute không hợp lệ',
+                'required'  => ':attribute không hợp lệ',
+                'min'       => ':attribute không hợp lệ',
+                'max'       => ':attribute phải tối đa là 255 ký tự',
+                'numeric'   => ':attribute phải là kiểu số',
+                'email'     => ':attribute không hợp lệ',
             ]
         );
         $supplier->update($validatedData);

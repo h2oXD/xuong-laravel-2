@@ -3,9 +3,9 @@
     Danh sách nhà cung cấp
 @endsection
 @section('content')
-    <h1>Danh sách nhà cung cấp</h1>
-    <a class="btn btn-success" href="{{ route('suppliers.create') }}">Thêm mới</a>
-    <table class="table table-triped">
+    <h3>Danh sách nhà cung cấp</h3>
+    <a class="btn btn-success mb-3" href="{{ route('suppliers.create') }}">Thêm mới</a>
+    <table class="table table-striped">
         <tr>
             <th>ID</th>
             <th>NAME</th>
